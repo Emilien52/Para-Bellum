@@ -22,6 +22,7 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 			echo '<link rel="icon" type="image/x-icon" href="favicon.ico"></link>';
 	?>
 	<title><?php echo $_Serveur_['General']['name'] ?></title>
+	<style>.color-principal { color:#000000; }</style>
 </head>
 
 <body>
@@ -181,6 +182,7 @@ function ajout_text_complement(textarea, entertext, tapetext, balise, complement
 	}
 }
 </script>
+<div id="divScroll" class="btn btn-primary" onclick="goToTop()"><i class="fa fa-arrow-up" aria-hidden="true"></i></div>
 <script>
 
 // cookies consent
