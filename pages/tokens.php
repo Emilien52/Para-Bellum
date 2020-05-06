@@ -1,8 +1,8 @@
-<header class="heading-pagination">
-	<div class="container-fluid">
-		<h1 class="text-uppercase wow fadeInRight" style="color:white;">Achat de Jetons</h1>
-	</div>
-</header>
+<section class="layout" id="white">
+		<div class="container">
+			<h1 class="titre text-uppercase"><span class="fa fa-shopping-cart"></span> Achat de Jetons</h1>
+		</div>
+</section>
 <section class="layout" id="page">
 <div class="container">
 
