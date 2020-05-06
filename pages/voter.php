@@ -56,7 +56,7 @@
 						}
 						else
 						{
-							$temp .="Vous récupérerez une surprise :D :P";
+							$temp .="Vous récupérerez une surprise :D";
 						}
 
 					for($a=0;$a<count($list); $a++) {
@@ -100,15 +100,14 @@
                 
                 for($i = 0; $i < count($jsonCon); $i++) { ?>
 					
-					<li class="nav-item"><a href="#voter<?php echo $i; ?>" data-toggle="tab" class="nav-link <?php if($i == 0) echo ' active'; ?>"><?php echo $lecture['Json'][$i]['nom']; ?></a></li>
+					<li class="nav-item color-principal"><a href="#voter<?php echo $i; ?>" data-toggle="tab" class="nav-link <?php if($i == 0) echo ' active'; ?>"><?php echo $lecture['Json'][$i]['nom']; ?></a></li>
 					
 				<?php } ?>
 				</ul>
 				
 				
 				<?php if(!isset($_GET['player'])) { ?>	
-					<div class="panel-body" style="background-color:white;padding:10px;">
-						 <h4 class="panel-title text-center">Veuillez rentrer votre pseudo exact In-Game :</h4>
+						 <h4 class="panel-title text-center color-principal">Veuillez rentrer votre pseudo exact In-Game :</h4>
 							<form  id="forme-vote" role="form" method="GET" action="index.php">
 								<div style="width:60%;margin-right:20%; margin-left:20%;" >
 									<div class="row">
@@ -121,11 +120,10 @@
 					</div>
 				<?php } else
 				{ ?>
-				<div class="tab-content" style="background-color:white;padding:10px;">
 				<?php for($i = 0; $i < count($jsonCon); $i++) { ?>
 				
 					<div id="voter<?php echo $i; ?>" class="tab-pane fade <?php if($i==0) echo 'in active show';?>" <?php if($i == 0) { echo 'aria-expanded="true"'; } else echo 'aria-expanded="false"'; ?>>  
-						<div class="panel-body">
+						<div class="panel-body color-principal">
 							<div class="alert alert-dismissable alert-success">
 							<button type="button" class="close" data-dismiss="alert">×</button>
 							<center>Bienvenue dans la catégorie de vote pour le serveur : <?=$lecture['Json'][$i]['nom'];?></center>
