@@ -1,0 +1,49 @@
+# Ce thème est personnalisable : il vous suffit de mofifier les espaces de textes ici !
+# Quelques liens utiles :
+# Pour les icons : https://fontawesome.com/icons?d=gallery
+
+About:
+
+    main-title: Découvrez notre serveur
+    desc-top: "Voici notre serveur en 3 points"
+
+    icon1: fas fa-bolt
+    icon2: fas fa-trophy
+    icon3: fas fa-bomb
+
+    title1: Puissant !
+    title2: Impresionnant !
+    title3: Explosif !
+
+    desc1: Notre serveur est hébergé sur une machine puissante !
+    desc2: Découvrez un serveur plutôt impressionant !
+    desc3: La communauté de notre serveur est plutôt... Explosive !
+
+    desc-bottom: Découvrez la possibilité d'avoir un texte 100% personnalisable à cet emplacement !
+
+News:
+
+    main-title: Nos dernières informations
+    desc-top: "Découvrez l'actualité de notre serveur"
+
+Staff:
+
+    main-title: L'équipe du serveur
+    desc-top: "Découvrez le staff de notre serveur"
+
+    number: 1 #Mettez le nombre de membres du staff
+
+    #Copier/coller les deux champs ci-dessous en fonction du nombre de membres de votre staff et changez avec le numéro correspondant (par ordre d'affichage croissant)
+    name1: Username
+    grade1: Rank
+
+
+Footer:
+
+    icon1: fab fa-youtube
+    icon2: fab fa-twitter
+    icon3: fab fa-facebook
+
+    link-icon1: #
+    link-icon2: #
+    link-icon3: #
