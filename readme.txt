@@ -5,11 +5,8 @@ Quelques petites infos :
 - merci de respecter le footer et de ne pas le modifier (afin que celui-ci respecte les CGU de CMW et également qu'il me crédite)
 - si tu trouves un bug, je t'invite à aller le signaler sur le forum dans le topic correspondant à Para Bellum 
 
-Pour les prochaines MàJ voici un lien : https://trello.com/b/Mksx4iDH/para-bellum-v163-cmw
 
 ***
-
-Me suivre : https://www.hive4code.fr/oxykis/
 
 v1.0 :
 + Lancement du thème
