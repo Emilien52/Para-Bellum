@@ -16,15 +16,18 @@
         </div>
 		<div class="card card-parabellum text-xs-center">
             <div class="card-block text-center text-uppercase">
-				IP du serveur : <?php echo '<b>'.$_Serveur_['General']['ipTexte'].'</b>'; ?> | <?php if($modeEnLigne == 0)
+				IP du serveur : <?php echo '<b>'.$_Serveur_['General']['ipTexte'].'</b>'; ?> 
+				<p class="h6 wow fadeInUp" data-wow-delay="0.9s"><?php if($_Serveur_['General']['statut'] == 0)
                 {
                 	echo '<span class="badge badge-danger">Hors-Ligne</span>'; 
                 }
-                else
+                elseif($_Serveur_['General']['statut'] == 1)
                 {
                 	echo '<span class="badge badge-success">En Ligne</span> : '.$playeronline.' / '.$maxPlayers;
                 }
-                ?>
+                else
+                	echo '<span class="badge badge-warning">En Maintenance</span>'; 
+                ?></p>
 			</div>
 		</div>
 	</header>
