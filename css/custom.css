@@ -1,6 +1,7 @@
 @charset "UTF-8";
 /*
 *   2018 par Oxykis
+*   2020 par Emilien52
 *   Touts droits reservés
 */
 
@@ -433,13 +434,6 @@ header h2 {
 #staff .card-block {
     border: 1px solid #fff;
 }
-#divScroll{
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    cursor: pointer;
-}
 
 /* --- --- FOOTER --- --- */
 
@@ -550,7 +544,7 @@ footer span:hover {
 #page label,
 #page p,
 #page td {
-    color: #fff;
+    color: #d82c2e;
 }
 
 #page h3 {
@@ -598,6 +592,13 @@ footer span:hover {
     border: 1px solid #fff;
     border-radius: 10px;
     padding: 5px 15px 5px 15px;
+}
+#divScroll{
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
 }
 
 /* --- --- ERREURS --- --- */
