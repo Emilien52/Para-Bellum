@@ -28,3 +28,16 @@ v1.1.0 :
 ~ Icon entete correspondant au thème de la page
 
 ~ Ré-organisation du code (CSS)
+
+v1.2.0
+
++ Ajout du système de modif depuis le panel (Par BadiiiX)
++ Ajout page liste des membres
++ Ajout de la page chat
+
+~ Mise à jour du thème pour la version 1.7.3 de cmw
+~ Refonte de la page vote
+
+Remerciements: BadiiiX | Guedesite | Florentlife
+
+Et Oxykis qui nous a permis de reprendre son thème !
