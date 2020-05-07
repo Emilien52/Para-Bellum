@@ -1,7 +1,6 @@
 @charset "UTF-8";
 /*
 *   2018 par Oxykis
-*   2020 par Emilien52
 *   Touts droits reservés
 */
 
@@ -544,7 +543,7 @@ footer span:hover {
 #page label,
 #page p,
 #page td {
-    color: #0A0504;
+    color: #fff;
 }
 
 #page h3 {
