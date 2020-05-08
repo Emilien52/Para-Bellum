@@ -34,9 +34,11 @@ v1.2.0
 + Ajout du système de modif depuis le panel (Par BadiiiX)
 + Ajout page liste des membres
 + Ajout de la page chat
++ Remise en fonction du forum
 
 ~ Mise à jour du thème pour la version 1.7.3 de cmw
-~ Refonte de la page vote
+~ Refonte de la page vote (Merci Guedesite et Florentlife)
+~ Mise à jour inscription (Merci BadiiiX)
 
 Remerciements: BadiiiX | Guedesite | Florentlife
 
