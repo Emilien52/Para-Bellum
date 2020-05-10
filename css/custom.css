@@ -1,13 +1,14 @@
 @charset "UTF-8";
 /*
-*   2018 par Oxykis
+*   2018 par Oxykis Édité par Emilien52
 *   Touts droits reservés
 */
 
 /* --- --- GLOBAL --- --- */
 
 * {
-    font-family: 'Lato', sans-serif;;
+    font-family: 'Lato', sans-serif;
+    ;
     color: #fff;
 }
 
@@ -32,8 +33,8 @@ a:hover {
     color: #eee;
 }
 
-.link:hover{
-    cursor:pointer;
+.link:hover {
+    cursor: pointer;
 }
 
 .white-container {
@@ -65,29 +66,33 @@ a:hover {
 }
 
 .btn-parabellum {
-    color: #fff!important;
+    color: #fff !important;
     background-color: #d82c2e;
     border: 1px solid #fff;
 }
 
 .btn-parabellum:hover {
-    color: #d82c2e!important;
+    color: #d82c2e !important;
     background-color: #fff;
 }
 
-.btn:focus, .btn:active { /* permet de retirer la bordure bleu que génère boostrap au clic */
+.btn:focus,
+.btn:active {
+    /* permet de retirer la bordure bleu que génère boostrap au clic */
     outline: none !important;
     box-shadow: none !important;
 }
 
-.btn-parabellumW { /* Pour les fonds blancs */
-    color: #fff!important;
+.btn-parabellumW {
+    /* Pour les fonds blancs */
+    color: #fff !important;
     background: #d82c2e;
     border: 1px solid #d82c2e;
 }
 
-.btn-parabellumW:hover { /* Pour les fonds blancs */
-    color: #d82c2e!important;
+.btn-parabellumW:hover {
+    /* Pour les fonds blancs */
+    color: #d82c2e !important;
     background: #fff;
     border: 1px solid #d82c2e;
 }
@@ -108,8 +113,15 @@ a:hover {
     color: #fff;
 }
 
-#btnGroupDrop3 { /* btn profil */
+#btnGroupDrop3 {
+    /* btn profil */
     border-color: #fff;
+}
+
+.requiredField {
+    color: #d82c2e;
+    font-size: 120%;
+    font-weight: 900;
 }
 
 /* MODAL */
@@ -168,12 +180,18 @@ a:hover {
 /* Navbar */
 
 .bg-parabellum {
-    background-color: #d82c2e!important;
+    background-color: #d82c2e !important;
 }
 
 .navbar-brand {
     font-size: 25px;
     font-weight: bold;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    background: #d82c2e;
+    color: #fff !important;
 }
 
 /* Header */
@@ -189,7 +207,8 @@ header h2 {
     font-size: 30px;
 }
 
-.card-parabellum { /* IP du serveur */
+.card-parabellum {
+    /* IP du serveur */
     background-color: #d82c2e;
     padding: 10px 0 10px 0;
     border-radius: 0;
@@ -211,7 +230,8 @@ header h2 {
     background: rgba(0, 0, 0, 0.55);
 }
 
-.btn-circle { /* bouton scroll */
+.btn-circle {
+    /* bouton scroll */
     color: #fff;
     width: 50px;
     font-size: 20px;
@@ -524,7 +544,7 @@ footer span:hover {
 
 /* --- --- PAGE --- --- */
 
-#page{
+#page {
     flex: 1;
 }
 
@@ -582,8 +602,7 @@ footer span:hover {
 
 #page .white-container td,
 #page .white-container span,
-#page .white-container i
-#page .white-container h3 {
+#page .white-container i #page .white-container h3 {
     color: #d82c2e;
 }
 
@@ -592,12 +611,23 @@ footer span:hover {
     border-radius: 10px;
     padding: 5px 15px 5px 15px;
 }
-#divScroll{
-    display: none;
+
+#divScroll {
     position: fixed;
     bottom: 20px;
     right: 20px;
     cursor: pointer;
+    background: #d82c2e;
+}
+
+.page-link {
+    color: #d82c2e !important;
+    background-color: #eee !important;
+}
+
+.page-link:hover {
+    background-color: #d82c2e !important;
+    color: #eee !important;
 }
 
 /* --- --- ERREURS --- --- */
@@ -612,5 +642,5 @@ footer span:hover {
 
 #erreur li {
     color: #6c757d;
-    list-style-type:none;
+    list-style-type: none;
 }
