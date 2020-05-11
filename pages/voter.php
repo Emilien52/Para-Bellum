@@ -121,186 +121,202 @@
 	<?php } else { ?>
 		<?php for ($i = 0; $i < count($jsonCon); $i++) { ?>
 
-			<div id="voter<?php echo $i; ?>" class="tab-pane fade <?php if ($i == 0) echo 'in active show'; ?>" <?php if ($i == 0) {
-																													echo 'aria-expanded="true"';
-																												} else echo 'aria-expanded="false"'; ?>>
+			<div id="voter<?php echo $i; ?>" class="tab-pane fade <?php if($i==0) echo 'in active show';?>" <?php if($i == 0) { echo 'aria-expanded="true"'; } else echo 'aria-expanded="false"'; ?>>  
 				<div class="panel-body color-principal">
 					<div class="alert alert-dismissable alert-success">
 						<button type="button" class="close" data-dismiss="alert">×</button>
 						<center>Bienvenue dans la catégorie de vote pour le serveur : <?= $lecture['Json'][$i]['nom']; ?></center>
 					</div>
 
-					<?php
-
-
-					$pseudo = htmlspecialchars($_GET['player']);
-
-					$enligne = false;
-					foreach ($serveurStats[$i]['joueurs'] as $key => $value)
-						$serveurStats[$i]['joueurs'][$key] = strtolower($value);
-					if (isset($pseudo) and isset($serveurStats[$i]['joueurs']) and $serveurStats[$i]['joueurs'] and in_array(strtolower($pseudo), $serveurStats[$i]['joueurs'])) {
-						$enligne = true;
-					}
-
-					$req_vote->execute(array('serveur' => $i));
-					$count_req->execute(array('serveur' => $i));
-					$data_count = $count_req->fetch();
-					if ($data_count['count'] > 0) {
-						while ($liensVotes = $req_vote->fetch()) {
-							$id = $liensVotes['id'];
-							if (!ExisteJoueur($pseudo, $id, $bddConnection)) {
-								CreerJoueur($pseudo, $id, $bddConnection);
-							}
-							$donnees = RecupJoueur($pseudo, $id, $bddConnection);
-							$lectureVotes = LectureVote($id, $bddConnection);
-							$action = explode(':', $lectureVotes['action'], 2);
-							if (!Vote($pseudo, $id, $bddConnection, $donnees, $lectureVotes['temps'])) {
-								echo '<button type="button" class="btn btn-success" style="margin-top:5px; margin-right:5px;" disabled>' . GetTempsRestant($donnees['date_dernier'], $lectureVotes['temps'], $donnees) . '</button>';
-							} else if ($action[0] != "jeton" || isset($_Joueur_)) {
-								if ($lectureVotes['enligne'] == 1 && !$enligne) {
-									echo '<button type="button" class="btn btn-danger" style="margin-top:5px; margin-right:5px;" disabled>Vous devez être connecté sur le serveur pour pouvoir voter sur ce site.</button>';
-								} else {
-									echo '<a href="' . $liensVotes['lien'] . '" style="margin-top:5px;" id="btn-lien-' . $id . '" target="_blank" onclick="document.getElementById(\'btn-lien-' . $id . '\').style.display=\'none\';document.getElementById(\'btn-verif-' . $id . '\').style.display=\'inline\';bouclevote(' . $id . ',\'' . $pseudo . '\');" class="btn btn-primary" >' . $liensVotes['titre'] . '</a>
-													  <button id="btn-verif-' . $id . '" style="margin-top:5px; display:none;" type="button" class="btn btn-danger" disabled>Vérification en cours ...</button>
-													  <button type="button" style="margin-top:5px; display:none;" id="btn-after-' . $id . '" class="btn btn-success" disabled>' . TempsTotal($lectureVotes['temps']) . '</button>
-													';
+					<?php  
+							
+							
+								$pseudo = htmlspecialchars($_GET['player']);
+								
+								$enligne = false;
+								foreach($serveurStats[$i]['joueurs'] as $key => $value)
+									$serveurStats[$i]['joueurs'][$key] = strtolower($value);
+								if(isset($pseudo) AND isset($serveurStats[$i]['joueurs']) AND $serveurStats[$i]['joueurs'] AND in_array(strtolower($pseudo), $serveurStats[$i]['joueurs']))
+								{
+									$enligne = true;
 								}
-							} else {
-								echo '<button type="button" class="btn btn-danger" style="margin-top:5px; margin-right:5px;" disabled>Vous devez être connecté sur le site pour pouvoir voter sur ce site.</button>';
-							}
-						}
-					}
-					?>
+	
+								$req_vote->execute(array('serveur' => $i));
+								$count_req->execute(array('serveur' => $i));
+								$data_count = $count_req->fetch();
+								if($data_count['count'] > 0)
+								{
+									while($liensVotes = $req_vote->fetch())
+									{ 
+										$id = $liensVotes['id'];
+										if(!ExisteJoueur($pseudo, $id, $bddConnection))
+										{
+											CreerJoueur($pseudo, $id, $bddConnection);
+										}
+										$donnees = RecupJoueur($pseudo, $id, $bddConnection);
+										$lectureVotes = LectureVote($id, $bddConnection); 
+										$action = explode(':', $lectureVotes['action'], 2);
+										if(!Vote($pseudo, $id, $bddConnection, $donnees, $lectureVotes['temps']))
+										{
+											echo '<button type="button" class="btn btn-success" style="margin-top:5px; margin-right:5px;" disabled>'.GetTempsRestant($donnees['date_dernier'], $lectureVotes['temps'], $donnees).'</button>';
+										}
+										else if($action[0] != "jeton" || isset($_Joueur_))
+										{
+											if($lectureVotes['enligne'] == 1 && !$enligne) 
+											{
+												echo '<button type="button" class="btn btn-danger" style="margin-top:5px; margin-right:5px;" disabled>Vous devez être connecté sur le serveur pour pouvoir voter sur ce site.</button>';
+										
+											} else {
+												echo '<a href="'.$liensVotes['lien'].'" style="margin-top:5px;" id="btn-lien-'.$id.'" target="_blank" onclick="document.getElementById(\'btn-lien-'.$id.'\').style.display=\'none\';document.getElementById(\'btn-verif-'.$id.'\').style.display=\'inline\';bouclevote('.$id.',\''.$pseudo.'\');" class="btn btn-primary" >'.$liensVotes['titre'].'</a>
+													  <button id="btn-verif-'.$id.'" style="margin-top:5px; display:none;" type="button" class="btn btn-danger" disabled>Vérification en cours ...</button>
+													  <button type="button" style="margin-top:5px; display:none;" id="btn-after-'.$id.'" class="btn btn-success" disabled>'.TempsTotal($lectureVotes['temps']).'</button>
+													';
+											}
+										} else {
+											echo '<button type="button" class="btn btn-danger" style="margin-top:5px; margin-right:5px;" disabled>Vous devez être connecté sur le site pour pouvoir voter sur ce site.</button>';
+										
+										}
+									}
+								}
+								?>
+					</div>
 				</div>
+				
+				<?php } ?>
+				</div>	
+			<?php } ?>				
 			</div>
+			<br/>	
 
-		<?php } ?>
-	</div>
-<?php } ?>
-</div>
-<br />
-<div class="container">
-	<h3 class="header-bloc">Top voteurs</h3>
-	<div class="corp-bloc">
+			<h3 class="header-bloc">Top voteurs</h3>
+			<div class="corp-bloc">
 
-		<table class="table table-hover">
+				<table class="table table-hover">
 
-			<thead>
-				<tr>
-					<th>#</th>
-					<th>Pseudo</th>
-					<th>Votes</th>
-				</tr>
-			</thead>
-
-			<?php
-			if (isset($topVoteurs)) {
-				for ($i = 0; $i < count($topVoteurs) and $i < 10; $i++) {
-					$Img = new ImgProfil($topVoteurs[$i]['pseudo'], 'pseudo');
-			?>
-					<tr>
-						<td><?php echo $i + 1 ?></td>
-						<td><img src="<?= $Img->getImgToSize(30, $width, $height); ?>" style="width: <?= $width; ?>px; height: <?= $height; ?>px;" alt="none" /> <strong><?php echo $topVoteurs[$i]['pseudo']; ?></strong></td>
-						<td id="nbr-vote-<?php echo $topVoteurs[$i]['pseudo']; ?>"><?php echo $topVoteurs[$i]['nbre_votes']; ?></td>
-					</tr>
-			<?php }
-			} ?>
-		</table>
-	</div>
-</div>
+					<thead>
+						<tr><th>#</th><th>Pseudo</th><th>Votes</th></tr>
+					</thead>
+				
+						<?php 
+						if(isset($topVoteurs))
+						{
+							for($i = 0; $i < count($topVoteurs) AND $i < 10; $i++) {
+								$Img = new ImgProfil($topVoteurs[$i]['pseudo'], 'pseudo');
+							 ?>
+							<tr><td><?php echo $i+1 ?></td><td><img src="<?=$Img->getImgToSize(30, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="none" /> <strong><?php echo $topVoteurs[$i]['pseudo']; ?></strong></td><td id="nbr-vote-<?php echo $topVoteurs[$i]['pseudo']; ?>"><?php echo $topVoteurs[$i]['nbre_votes']; ?></td></tr>
+							<?php }
+						} ?>
+				</table>
+			</div>
 </div>
 </section>
-<?php
-
+<?php	
+	
 function TempsTotal($tempsRestant)
 {
 	$tempsH = 0;
 	$tempsM = 0;
-	while ($tempsRestant >= 3600) {
-		$tempsH = $tempsH + 1;
-		$tempsRestant = $tempsRestant - 3600;
-	}
-	while ($tempsRestant >= 60) {
-		$tempsM = $tempsM + 1;
-		$tempsRestant = $tempsRestant - 60;
-	}
-	if ($tempsH == 0) {
-		return $tempsM . ' minute(s)';
-	} else if ($tempsM <= 9) {
-		return $tempsH . 'H0' . $tempsM;
-	} else {
-		return $tempsH . 'H' . $tempsM;
-	}
+	while($tempsRestant >= 3600)
+		{
+			$tempsH = $tempsH + 1;
+			$tempsRestant = $tempsRestant - 3600;
+		}
+		while($tempsRestant >= 60)
+		{
+			$tempsM = $tempsM + 1;
+			$tempsRestant = $tempsRestant - 60;
+		}
+		if($tempsH == 0)
+		{
+			return $tempsM.' minute(s)';
+		}
+		else if ($tempsM <= 9)
+		{
+			return $tempsH. 'H0' .$tempsM;
+		}
+		else
+		{
+			return $tempsH. 'H' .$tempsM;
+		}
 }
 function RecupJoueur($pseudo, $id, $bddConnection)
-{
-	$line = $bddConnection->prepare('SELECT * FROM cmw_votes WHERE pseudo = :pseudo AND site = :site');
-	$line->execute(array(
-		'pseudo' => $pseudo,
-		'site' => $id
-	));
-	$donnees = $line->fetch(PDO::FETCH_ASSOC);
-	return $donnees;
-}
-
-function Vote($pseudo, $id, $bddConnection, $donnees, $temps)
-{
-	if ($donnees['date_dernier'] + $temps < time()) {
-		return true;
-	} else
-		return false;
-}
-
-function ExisteJoueur($pseudo, $id, $bddConnection)
-{
-	$line = $bddConnection->prepare('SELECT * FROM cmw_votes WHERE pseudo = :pseudo AND site = :site');
-	$line->execute(array(
-		'pseudo' => $pseudo,
-		'site' => $id
-	));
-
-	$donnees = $line->fetch(PDO::FETCH_ASSOC);
-
-	if (empty($donnees['pseudo']))
-		return false;
-	else
-		return true;
-}
-
-function CreerJoueur($pseudo, $id, $bddConnection)
-{
-	$req = $bddConnection->prepare('INSERT INTO cmw_votes(pseudo, site) VALUES(:pseudo, :site)');
-	$req->execute(array(
-		'pseudo' => $pseudo,
-		'site' => $id
-	));
-}
-
-function GetTempsRestant($temps, $tempsTotal, $donnees)
-{
-	$tempsEcoule = time() - $temps;
-	$tempsRestant = $tempsTotal - $tempsEcoule;
-	$tempsH = 0;
-	$tempsM = 0;
-	while ($tempsRestant >= 3600) {
-		$tempsH = $tempsH + 1;
-		$tempsRestant = $tempsRestant - 3600;
+	{
+		$line = $bddConnection->prepare('SELECT * FROM cmw_votes WHERE pseudo = :pseudo AND site = :site');
+		$line->execute(array(
+			'pseudo' => $pseudo,
+			'site' => $id	));
+		$donnees = $line->fetch(PDO::FETCH_ASSOC);	
+		return $donnees;
 	}
-	while ($tempsRestant >= 60) {
-		$tempsM = $tempsM + 1;
-		$tempsRestant = $tempsRestant - 60;
+	
+	function Vote($pseudo, $id, $bddConnection, $donnees, $temps)
+	{
+		if($donnees['date_dernier'] + $temps < time())
+		{
+			return true;
+		}
+		else 
+			return false;
 	}
-	if ($tempsM <= 9) {
-		return $tempsH . 'H0' . $tempsM;
-	} else {
-		return $tempsH . 'H' . $tempsM;
+	
+	function ExisteJoueur($pseudo, $id, $bddConnection)
+	{
+		$line = $bddConnection->prepare('SELECT * FROM cmw_votes WHERE pseudo = :pseudo AND site = :site');
+		$line->execute(array(
+			'pseudo' => $pseudo,
+			'site' => $id	));
+			
+		$donnees = $line->fetch(PDO::FETCH_ASSOC);
+		
+		if(empty($donnees['pseudo']))
+			return false;
+		else
+			return true;
 	}
-}
+	
+	function CreerJoueur($pseudo, $id, $bddConnection)
+	{
+		$req = $bddConnection->prepare('INSERT INTO cmw_votes(pseudo, site) VALUES(:pseudo, :site)');
+		$req->execute(array(
+			'pseudo' => $pseudo,
+			'site' => $id
+			));
+	}
+	
+	function GetTempsRestant($temps, $tempsTotal, $donnees)
+	{
+		$tempsEcoule = time() - $temps;
+		$tempsRestant = $tempsTotal - $tempsEcoule;
+		$tempsH = 0;
+		$tempsM = 0;
+		while($tempsRestant >= 3600)
+		{
+			$tempsH = $tempsH + 1;
+			$tempsRestant = $tempsRestant - 3600;
+		}
+		while($tempsRestant >= 60)
+		{
+			$tempsM = $tempsM + 1;
+			$tempsRestant = $tempsRestant - 60;
+		}
+		if($tempsH == 0)
+		{
+			return $tempsM.' minute(s)';
+		}
+		else if ($tempsM <= 9)
+		{
+			return $tempsH. 'H0' .$tempsM;
+		}
+		else
+		{
+			return $tempsH. 'H' .$tempsM;
+		}
+	}
 
-function LectureVote($id, $bddConnection)
-{
-	$req = $bddConnection->prepare('SELECT * FROM cmw_votes_config WHERE id = :id');
-	$req->execute(array('id' => $id));
-	return $req->fetch(PDO::FETCH_ASSOC);
-}
-?>
+	function LectureVote($id, $bddConnection)
+	{
+		$req = $bddConnection->prepare('SELECT * FROM cmw_votes_config WHERE id = :id');
+		$req->execute(array('id' => $id));
+		return $req->fetch(PDO::FETCH_ASSOC);
+	}
+	?>
