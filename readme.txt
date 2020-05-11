@@ -40,6 +40,13 @@ v1.2.0
 ~ Refonte de la page vote (Merci Guedesite et Florentlife)
 ~ Mise à jour inscription (Merci BadiiiX)
 
+V1.2.1
+
+~ Fix bug page vote
+
+
 Remerciements: BadiiiX | Guedesite | Florentlife
 
 Et Oxykis qui nous a permis de reprendre son thème !
+
+
