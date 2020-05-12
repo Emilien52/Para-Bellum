@@ -1,33 +1,12 @@
 Salut et merci d'avoir téléchargé Para Bellum !
 
 Quelques petites infos :
-- tu peux modifier certains textes en allant dans : config/config.yml
+- tu peux modifier certains textes en allant dans thème sur ton panel Admin
 - merci de respecter le footer et de ne pas le modifier (afin que celui-ci respecte les CGU de CMW et également qu'il me crédite)
-- si tu trouves un bug, je t'invite à aller le signaler sur le forum dans le topic correspondant à Para Bellum 
+- si tu trouves un bug, je t'invite à aller le signaler sur le discord ou sur notre Git 
 
 
 ***
-
-v1.0 :
-+ Lancement du thème
-
-v1.0.1 :
-~ Fix de bugs mineurs
-
-v1.1.0 :
-
-+ Ajout d'une page staff sur la page d'accueil
-+ Scrolldown animé sur la page d'accueil
-+ Ajout d'un carré "info" sur les pages
-
-~ Skins 1.8 supportés (img)
-~ Refonte du design de la boutique
-~ Refonte du design de la page de vote
-~ Modifications mineures du support
-~ Fix erreur 6 (couleurs)
-~ Icon entete correspondant au thème de la page
-
-~ Ré-organisation du code (CSS)
 
 v1.2.0
 
@@ -44,6 +23,16 @@ V1.2.1
 
 ~ Fix bug page vote
 
+
+V1.2.2 (en cours de développement)
+
++ Remise en fonction de la page Messagerie
+
+~ Remise en fonction de la page profil
+~ Ajout messagerie + profil dans le menu déroulant
+~ Mise à jour page boutique + panier
+
+----------------------------------------------------------------------------------------------------------------------
 
 Remerciements: BadiiiX | Guedesite | Florentlife
 
