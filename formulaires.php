@@ -10,8 +10,8 @@
 					<div class="row">
 						<?php if (isset($_COOKIE['pseudo']))
 							echo '<div class="col-md-4">
-				<img class="profile-img" src="https://minecraft-api.com/api/skins/128.php?player=' . $_COOKIE['pseudo'] . '" alt="" />
-				</div>';
+											<img class="profile-img" src="https://cravatar.eu/avatar/' . $_COOKIE['pseudo'] . '/128" alt="" />
+										</div>';
 						?>
 						<div class="<?php if (isset($_COOKIE['pseudo'])) echo 'col-md-8';
 									else echo 'col-md-12'; ?>">
