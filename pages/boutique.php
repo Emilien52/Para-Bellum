@@ -1,3 +1,8 @@
+<style>
+blockcote{
+color: #000;
+}
+</style>
 <section class="layout" id="white">
 		<div class="container">
 			<h1 class="titre text-uppercase"><span class="fa fa-shopping-cart"></span> Boutique</h1>
