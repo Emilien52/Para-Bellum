@@ -266,7 +266,7 @@
 							while ($staff <= $_Theme_['Staff']['number']) : ?>
 								<div class="col-md-3 col-sm-4 col-6">
 									<div class="card staff-card">
-										<img class="card-img-top" src="http://cravatar.eu/helmhead/<?= $_Theme_['Staff']['name' . $staff . ''] ?>/600.png" alt="staff-img">
+										<img class="card-img-top" src="https://cravatar.eu/helmhead/<?= $_Theme_['Staff']['name' . $staff . ''] ?>/600.png" alt="staff-img">
 										<div class="card-body">';
 											<h3 class="card-title"><?= $_Theme_['Staff']['name' . $staff . ''] ?></h3>
 											<p class="card-text">'<?= $_Theme_['Staff']['grade' . $staff . ''] ?></p>
