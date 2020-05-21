@@ -8,29 +8,22 @@ Quelques petites infos :
 
 ***
 
-v1.2.0
+V1.2.2
 
-+ Ajout du système de modif depuis le panel (Par BadiiiX)
-+ Ajout page liste des membres
-+ Ajout de la page chat
-+ Remise en fonction du forum
-
-~ Mise à jour du thème pour la version 1.7.3 de cmw
-~ Refonte de la page vote (Merci Guedesite et Florentlife)
-~ Mise à jour inscription (Merci BadiiiX)
-
-V1.2.1
-
-~ Fix bug page vote
-
-
-V1.2.2 (en cours de développement)
-
-+ Remise en fonction de la page Messagerie
++ Début de travaux sur la page Messagerie
 
 ~ Remise en fonction de la page profil
-~ Ajout messagerie + profil dans le menu déroulant
-~ Mise à jour page boutique + panier
+~ Mise à jour page boutique (fix texte blanc)
+~ Mise à jour du forum
+~ Fix d'un bug qui empêcher le https
+
+V1.2.3 (en cours de développement)
+
++ Fin de travaux de la page Messagerie
+
+~ Mise à jour Menu déroulant (Profil, Administration etc etc)
+~ Visuel du panel admin (Par BadiiiX)
+~ Ajout modif couleurs du thème (Par BadiiiX)
 
 ----------------------------------------------------------------------------------------------------------------------
 
