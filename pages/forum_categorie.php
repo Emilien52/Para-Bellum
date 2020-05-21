@@ -45,30 +45,57 @@
 			<tr>
 				<th style="width: 5%"></th>
 				<th style="width: 65%">Nom</th>
-				<th style="width: 5%">Discussions</th>
-				<th style="width: 5%">Messages</th>
+				<th>Discussions</th>
+				<th>Messages</th>
 				<?php if(($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['deleteSousForum'] == true) AND !$_SESSION['mode'])
 				{
-					?><th style="width:20%">Actions</th><?php 
+					?><th style="width: 28%">Actions</th><?php 
 				} ?>
 			</tr>
 			<?php
 			$sousforumd = $_Forum_->infosSousForum($id, 1);
 			for($a = 0; $a < count($sousforumd); $a++)
 			{
+				if(($_Joueur_['rang'] == 1 AND !$_SESSION['mode']) OR $_PGrades_['PermsDefault']['forum']['perms'] >= $sousforumd[$a]['perms'] OR $sousforumd[$a]['perms'] == 0)
+				{
 				?>
 			<tr>
 				<td><?php if($sousforumd[$a]['img'] == NULL) { ?><a href="?&page=forum_categorie&id=<?php echo $id; ?>&id_sous_forum=<?php echo $sousforumd[$a]['id']; ?>"><i class="material-icons">chat</i></a><?php }
-					else { ?><a href="?page=forum_categorie&id=<?php echo $id; ?>&id_sous_forum=<?php echo $sousforumd[$a]['id']; ?>"><i class="material-icons"><?php echo $sousforumd[$a]['img']; ?></a><?php }?></td>
+					else { ?><a href="?page=forum_categorie&id=<?php echo $id; ?>&id_sous_forum=<?php echo $sousforumd[$a]['id']; ?>"><i class="material-icons"><?php echo $sousforumd[$a]['img']; ?></i></a><?php }?></td>
 				<td><a href="?&page=forum_categorie&id=<?php echo $id; ?>&id_sous_forum=<?php echo $sousforumd[$a]['id']; ?>"><?php echo $sousforumd[$a]['nom']; ?></a></td>	
 				<td><a href="?page=forum_categorie&id=<?php echo $id; ?>&id_sous_forum=<?php echo $sousforumd[$a]['id']; ?>"><?php echo $_Forum_->compteTopicsSF($sousforumd[$a]['id']); ?></a></td>
 				<td><a href="?page=forum_categorie&id=<?php echo $id; ?>&id_sous_forum=<?php echo $sousforumd[$a]['id']; ?>"><?php echo $_Forum_->compteAnswerSF($sousforumd[$a]['id']); ?></a></td>
 				<?php if(($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['deleteSousForum'] == true) AND !$_SESSION['mode'])
 				{
-					?><td><a href="?action=remove_sf&id_cat=<?php echo $id; ?>&id_sf=<?php echo $sousforumd[$a]['id']; ?>">Supprimer le Sous-Forum</a></td><?php 
+					?><td><a href=<?php if($sousforumd[$a]['close'] == 0) { ?>"?action=lock_sf&id_f=<?=$sousforumd[$a]['id_categorie'];?>&id=<?=$sousforumd[$a]['id'];?>&lock=1" title="Fermer le sous-forum"><i class="fa fa-unlock-alt"<?php } else { ?>"?action=unlock_sf&id_f=<?=$sousforumd[$a]['id_categorie'];?>&id=<?=$sousforumd[$a]['id'];?>&lock=0" title="Ouvrir le sous-forum"><i class="fa fa-lock"<?php } ?> aria-hidden="true"></i></a>
+						<div class="dropdown" style="display: inline; text-align: center;">
+							<button type="button" class="btn btn-info dropdown-toggle" id="Perms<?=$sousforumd[$a]['id'];?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="fas fa-edit"></i>
+							</button>
+							<div class="dropdown-menu">
+								<form action="?action=modifPermsSousForum" method="POST">
+									<input type="hidden" name="id" value="<?=$sousforumd[$a]['id'];?>" />
+									<a class="dropdown-item"><input type="number" name="perms" value="<?=$sousforumd[$a]['perms'];?>" class="form-control"></a>
+									<button type="submit" class="dropdown-item text-center">Modifier</button>
+								</form>
+							</div>
+						</div>
+						<a class="btn btn-info" data-toggle="modal" href="#NomForum" data-entite="2" data-nom="<?=$sousforumd[$a]['nom'];?>" data-icone="<?=($sousforumd[$a]['img'] == NULL) ? 'chat' : $sousforumd[$a]['img'];?>" data-id="<?=$sousforumd[$a]['id'];?>"><i class="fas fa-font"></i></a>
+						<div class="dropdown" style="display: inline; text-align: center;">
+							<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="fas fa-list"></i>
+							</button>
+							<div class="dropdown-menu">
+							    <a class="dropdown-item" href="?action=ordreSousForum&ordre=<?=$sousforumd[$a]['ordre']; ?>&id=<?=$sousforumd[$a]['id']; ?>&id_cat=<?=$sousforumd[$a]['id_categorie'];?>&modif=monter"><i class="fas fa-arrow-up"></i> Monter d'un cran</a>
+							    <a class="dropdown-item" href="?action=ordreSousForum&ordre=<?=$sousforumd[$a]['ordre']; ?>&id=<?=$sousforumd[$a]['id']; ?>&id_cat=<?=$sousforumd[$a]['id_categorie'];?>&modif=descendre"><i class="fas fa-arrow-down"></i> Descendre d'un cran</a>
+							</div>
+						</div>
+						<a href="?action=remove_sf&id_cat=<?php echo $id; ?>&id_sf=<?php echo $sousforumd[$a]['id']; ?>"><i class="fas fa-trash-alt"></i></a>
+						</td><?php 
 				} ?>
 			</tr>
 			<?php 
+				}
 			} 
 			?>
 		</table>
@@ -77,10 +104,10 @@
 		if(($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['addSousForum'] == true) AND !$_SESSION['mode'] && !isset($id_sous_forum))
 		{
 			?>
-			<div class="col-md-offset-12 col-md-12">
-				<center><a class="btn btn-parabellum" role="button" data-toggle="collapse" href="#sous_cat" aria-expanded="false" aria-controls="collapseExample">
+			<div class="col-md-offset-8 col-md-4">
+				<a class="btn btn-primary" role="button" data-toggle="collapse" href="#sous_cat" aria-expanded="false" aria-controls="collapseExample">
 				  Créez un sous-forum
-				</a></center>
+				</a>
 			</div>
 				<div class="collapse" id="sous_cat">
 					<div class="well">
@@ -88,8 +115,8 @@
 							<div class="row">
 								<div class="col-md-6">
 									<input type="hidden" name="id_categorie" value="<?php echo $id; ?>" />
-									<label class="control-label" for="nom">Nom</label>
-									<input type="text" require class="form-control" name="nom" id="nom" maxlength="40" />
+									<label class="control-label" for="nomSF">Nom</label>
+									<input type="text" required class="form-control" name="nom" id="nomSF" maxlength="40" />
 								</div>
 								<div class="col-md-6">	
 									<label class="control-label" for="img">Material icône : <a href="https://design.google.com/icons" target="_blank" >https://design.google.com/icons</a></label>
@@ -98,7 +125,7 @@
 							</div>
 							<div class="row">
 								<div class="col-md-offset-4 col-md-6">
-									<br><button type="sublmit" class="btn btn-success">Créer un sous-forum</button>
+									<button type="submit" class="btn btn-success">Créer un sous-forum</button>
 								</div>
 							</div>
 						</form>
@@ -108,7 +135,7 @@
 		}
 		?>
 		<br/>
-		<h3 style="text-transform: uppercase;"> Les topics de <?php echo $categoried['nom']; if(isset($id_sous_forum)) echo ' - '.$sousforumd['nom']; ?></h3>
+		<h3> Les topics de <?php echo $categoried['nom']; if(isset($id_sous_forum)) echo ' - '.$sousforumd['nom']; ?></h3>
 		<?php 
 		if(isset($id_sous_forum))
 			$count_topic_max2 = $_Forum_->compteTopicsSF($id_sous_forum);
@@ -139,7 +166,7 @@
 					{
 						echo '<th></th>';
 					} ?>
-					<th></th>
+					<th style="width: 5%"></th>
 					<th class="w-50">Nom du topic</th>
 					<th>Réponses</th>
 					<th>Dernière réponse</th>
@@ -147,55 +174,66 @@
 				<?php 
 				for($i = 0; $i < count($topicd); $i++)
 				{
+					if(($_Joueur_['rang'] == 1 AND !$_SESSION['mode']) OR $_PGrades_['PermsDefault']['forum']['perms'] >= $topicd[$i]['perms'] OR $topicd[$i]['perms'] == 0)
+					{
 					?>
 					<tr>
 						<?php if(isset($_Joueur_) && ($_PGrades_['PermsForum']['moderation']['selTopic'] == true OR $_Joueur_['rang'] == 1) && !$_SESSION['mode'])
 							{
-								?><td><input name="selection" type="checkbox" value="<?php echo $topicd[$i]['id']; ?>"/></a></td>
+								?><td><input name="selection" type="checkbox" value="<?php echo $topicd[$i]['id']; ?>"/></td>
 										<?php 
-							} ?>
-						<td><img src="https://cravatar.eu/head/<?php echo $topicd[$i]['pseudo'];?>/16" alt="avatar de l'auteur" title="<?php echo $topicd[$i]['pseudo']; ?>"/>
+							} 
+							$Img = new ImgProfil($topicd[$i]['pseudo'], 'pseudo');
+							?>
+						<td><a href="?page=profil&profil=<?=$topicd[$i]['pseudo'];?>"><img src="<?=$Img->getImgToSize(42, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="avatar de l'auteur" title="<?php echo $topicd[$i]['pseudo']; ?>"/></a>
 						</td>
 						<td><a href="?&page=post&id=<?php echo $topicd[$i]['id']; ?>"><?php if(isset($topicd[$i]['prefix']) && $topicd[$i]['prefix'] != 0)
 						{
 							echo $_Forum_->getPrefix($topicd[$i]['prefix']);
 						}
-							echo ' '.$topicd[$i]['nom']; ?></a></td>
+							echo ' '.$topicd[$i]['nom']; ?></a><br/><p style="margin-bottom: 0px;"><small><a href="?page=profil&profil=<?=$topicd[$i]['pseudo'];?>"><?=$topicd[$i]['pseudo'];?></a>, le <?=$_Forum_->getDateConvert($topicd[$i]['date_creation']);?></small></p></td>
 						<td><p>Réponses : <?php echo $_Forum_->compteReponse($topicd[$i]['id']); ?></td>
-						<td><a href="?&page=post&id=<?php echo $topicd[$i]['id']; ?>"><?php echo $_Forum_->conversionLastAnswer($topicd[$i]['last_answer']); ?></td>
+						<td><a href="?&page=post&id=<?php echo $topicd[$i]['id']; ?>"><?php echo $_Forum_->conversionLastAnswer($topicd[$i]['last_answer']); ?></a></td>
 					</tr>
 					<?php 
+					}
 				}
 				?>
 			</table><br/>
 			<?php if(($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['moderation']['addPrefix'] == true OR $_PGrades_['PermsForum']['moderation']['epingle'] == true OR $_PGrades_['PermsForum']['moderation']['closeTopic'] == true) AND !$_SESSION['mode'])
 			{
 			?>
-			<div id="popover" class="hide"><hr/><form id="sel-form" method='POST' action='?action=selTopic' class="inline">
+			<div id="popover" style="display: none;"><hr/><form id="sel-form" method='POST' action='?action=selTopic' class="inline">
 				<input type='hidden' name='idCat' value='<?php echo $id; ?>'>
 				<?php if(isset($id_sous_forum)) echo "<input type='hidden' name='idSF' value='$id_sous_forum'>"; 
 				if($_PGrades_['PermsForum']['moderation']['addPrefix'] == true OR $_Joueur_['rang'] == 1)
 				{ ?> 
-				<label for='prefix'>Appliquer un préfix de discussion : </label><select name='prefix' id='prefix' class="text-muted">
-					<option class="text-muted" value="NULL">Ne pas changer le préfixe</option>
-					<option class="text-muted" value='0'>Aucun</option>
+				<label for='prefix'>Appliquer un préfix de discussion : </label><select name='prefix' id='prefix'>
+					<option value="NULL">Ne pas changer le préfixe</option>
+					<option value='0'>Aucun</option>
 					<?php 
 					$reqPrefix = $_Forum_->getPrefixModeration();
-					while($donnees_prefix = $reqPrefix->fetch())
+					while($donnees_prefix = $reqPrefix->fetch(PDO::FETCH_ASSOC))
 					{
-						?><option class="text-muted" value="<?php echo $donnees_prefix['id']; ?>"><?=$donnees_prefix['nom'];?></option><?php 
+						?><option value="<?php echo $donnees_prefix['id']; ?>"><?=$donnees_prefix['nom'];?></option><?php 
 					}
 					?>
 				</select>
 				<?php } if($_PGrades_['PermsForum']['moderation']['epingle'] == true or $_Joueur_['rang'] == 1)
-				{ ?><br>
-				<label for='epingle'>Epingler une discussion : </label> <input type='radio' name='epingle' value='1' id='oui'/> <label for='oui'>Oui</label>
-																		<input type='radio' name='epingle' value='0' id='non'/> <label for='non'>Non</label>
+				{ ?>
+				<label for='epingle'>Epingler une discussion : </label> <input type='radio' name='epingle' value='1' id='ouiEp'/> <label for='ouiEp'>Oui</label>
+																		<input type='radio' name='epingle' value='0' id='nonEp'/> <label for='nonEp'>Non</label>
 				<?php } if($_PGrades_['PermsForum']['moderation']['closeTopic'] == true OR $_Joueur_['rang'] ==1)
-				{ ?><br>
+				{ ?>
 				<label for='close'>Fermer une discussion : </label> <input type='radio' name='close' value='1' id='yes'/> <label for='yes'>Oui</label>
 																	<input type='radio' name='close' value='0' id='no'/> <label for='no'>Non</label>
-				<?php } ?><button type='submit' class='btn btn-lg btn-parabellum btn-block'>Valider</button>
+				<?php } if($_PGrades_['PermsForum']['moderation']['deleteTopic'] == true OR $_Joueur_['rang'] == 1)
+				{
+					?><br/>
+					<label for='remove'>Supprimer les discussions : </label> <input type='radio' name='remove' value='1' id='ouiSP'/> <label for='ouiSP'>Oui</label>
+																			<input type='radio' name='remove' value='0' id='nonSp' checked/> <label for='nonSp'>Non</label>
+					<?php
+				} ?><button type='submit' class='btn btn-lg btn-primary btn-block'>Valider</button>
 				</form>
 			</div>
 			<?php 
