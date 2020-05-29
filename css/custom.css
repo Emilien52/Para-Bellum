@@ -67,12 +67,12 @@ a:hover {
 
 .btn-parabellum {
     color: #fff !important;
-    background-color: #d82c2e;
+    background-color: var(--color-main);
     border: 1px solid #fff;
 }
 
 .btn-parabellum:hover {
-    color: #d82c2e !important;
+    color: var(--color-main) !important;
     background-color: #fff;
 }
 
@@ -86,15 +86,15 @@ a:hover {
 .btn-parabellumW {
     /* Pour les fonds blancs */
     color: #fff !important;
-    background: #d82c2e;
-    border: 1px solid #d82c2e;
+    background: var(--color-main);
+    border: 1px solid var(--color-main);
 }
 
 .btn-parabellumW:hover {
     /* Pour les fonds blancs */
-    color: #d82c2e !important;
+    color: var(--color-main) !important;
     background: #fff;
-    border: 1px solid #d82c2e;
+    border: 1px solid var(--color-main);
 }
 
 .btn-offer {
@@ -119,7 +119,7 @@ a:hover {
 }
 
 .requiredField {
-    color: #d82c2e;
+    color: var(--color-main);
     font-size: 120%;
     font-weight: 900;
 }
@@ -127,7 +127,7 @@ a:hover {
 /* MODAL */
 
 .modal-header b {
-    color: #d82c2e;
+    color: var(--color-main);
     text-align: left;
 }
 
@@ -172,7 +172,7 @@ a:hover {
 /* Alerts */
 
 .alert-shop {
-    background: #d82c2e;
+    background: var(--color-main);
 }
 
 /* --- --- PAGE D'ACCUEIL --- --- */
@@ -180,7 +180,7 @@ a:hover {
 /* Navbar */
 
 .bg-parabellum {
-    background-color: #d82c2e !important;
+    background-color: var(--color-main) !important;
 }
 
 .navbar-brand {
@@ -190,7 +190,7 @@ a:hover {
 
 .dropdown-item.active,
 .dropdown-item:active {
-    background: #d82c2e;
+    background: var(--color-main);
     color: #fff !important;
 }
 
@@ -209,7 +209,7 @@ header h2 {
 
 .card-parabellum {
     /* IP du serveur */
-    background-color: #d82c2e;
+    background-color: var(--color-main);
     padding: 10px 0 10px 0;
     border-radius: 0;
 }
@@ -236,7 +236,7 @@ header h2 {
     width: 50px;
     font-size: 20px;
     text-align: center;
-    background: #d82c2e;
+    background: var(--color-main);
     border-radius: 50%;
     display: block;
     margin-left: auto;
@@ -252,27 +252,27 @@ header h2 {
 
 #about h1 {
     text-align: center;
-    color: #d82c2e;
+    color: var(--color-main);
     font-size: 40px;
     font-weight: bold;
 }
 
 #about h2 {
     text-align: center;
-    color: #d82c2e;
+    color: var(--color-main);
     font-size: 17px;
     padding-bottom: 50px;
 }
 
 #about h3 {
-    color: #d82c2e;
+    color: var(--color-main);
     font-size: 20px;
     padding-top: 30px;
     text-align: center;
 }
 
 #about span {
-    color: #d82c2e;
+    color: var(--color-main);
 }
 
 #about {
@@ -285,7 +285,7 @@ header h2 {
 }
 
 #about h4 {
-    color: #d82c2e;
+    color: var(--color-main);
     padding: 20px 0 0 0;
 }
 
@@ -295,7 +295,7 @@ header h2 {
     line-height: 150px;
     font-size: 60px;
     text-align: center;
-    background: #d82c2e;
+    background: var(--color-main);
     border-radius: 50%;
     display: block;
     margin-left: auto;
@@ -305,7 +305,7 @@ header h2 {
 /* News */
 
 #news {
-    background: #d82c2e;
+    background: var(--color-main);
 }
 
 #news h1 {
@@ -329,7 +329,7 @@ header h2 {
 }
 
 #news h5 {
-    color: #d82c2e;
+    color: var(--color-main);
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -340,7 +340,7 @@ header h2 {
 
 #news a,
 #news i {
-    color: #d82c2e;
+    color: var(--color-main);
 }
 
 #news .btn-color {
@@ -348,11 +348,11 @@ header h2 {
 }
 
 #news .btn-color:hover {
-    color: #d82c2e;
+    color: var(--color-main);
 }
 
 #news .red {
-    color: #d82c2e;
+    color: var(--color-main);
 }
 
 #news .card {
@@ -374,7 +374,7 @@ header h2 {
 
 .btn-news {
     color: #fff;
-    background-color: #d82c2e;
+    background-color: var(--color-main);
     border: 2px solid #fff;
     margin-top: 15px;
 }
@@ -394,21 +394,21 @@ header h2 {
 
 #staff h1 {
     text-align: center;
-    color: #d82c2e;
+    color: var(--color-main);
     font-size: 40px;
     font-weight: bold;
 }
 
 #staff h2 {
     text-align: center;
-    color: #d82c2e;
+    color: var(--color-main);
     font-size: 17px;
     padding-bottom: 50px;
 }
 
 #staff h3 {
     text-align: center;
-    color: #d82c2e;
+    color: var(--color-main);
     font-size: 17px;
     font-weight: bold;
     margin-bottom: 3px;
@@ -421,17 +421,17 @@ header h2 {
 
 #staff p {
     text-align: center;
-    color: #d82c2e;
+    color: var(--color-main);
     font-size: 15px;
 }
 
 #staff span {
-    color: #d82c2e;
+    color: var(--color-main);
 }
 
 .btn-staff {
     color: #fff;
-    background-color: #d82c2e;
+    background-color: var(--color-main);
     border: 2px solid #fff;
     margin-top: 15px;
 }
@@ -470,7 +470,7 @@ footer p {
 
 footer a,
 footer span {
-    color: #d82c2e;
+    color: var(--color-main);
     font-size: 13px;
 }
 
@@ -489,7 +489,7 @@ footer span:hover {
     line-height: 35px;
     font-size: 17px;
     text-align: center;
-    background: #d82c2e;
+    background: var(--color-main);
     border-radius: 50%;
     display: inline-block;
     margin-left: 15px;
@@ -503,7 +503,7 @@ footer span:hover {
 /* --- --- BOUTIQUE --- --- */
 
 .offer {
-    background: #d82c2e;
+    background: var(--color-main);
     margin-bottom: 30px;
 }
 
@@ -535,11 +535,11 @@ footer span:hover {
 }
 
 .breadcrumb-item a {
-    color: #d82c2e;
+    color: var(--color-main);
 }
 
 .breadcrumb-item.active {
-    color: #d82c2e;
+    color: var(--color-main);
 }
 
 /* --- --- PAGE --- --- */
@@ -549,13 +549,13 @@ footer span:hover {
 }
 
 #page {
-    background: #d82c2e;
+    background: var(--color-main);
 }
 
 #white h1,
 #white span {
     font-weight: bold;
-    color: #d82c2e;
+    color: var(--color-main);
 }
 
 #page a,
@@ -571,21 +571,21 @@ footer span:hover {
 }
 
 #alert-white {
-    color: #d82c2e;
+    color: var(--color-main);
 }
 
 #page .alert-primary {
     background: #fff;
-    color: #d82c2e;
+    color: var(--color-main);
 }
 
 #page .alert-danger {
-    background: #d82c2e;
+    background: var(--color-main);
     color: #fff;
 }
 
 .alert-info {
-    color: #d82c2e;
+    color: var(--color-main);
     background-color: #fff;
     border-color: #fff;
 }
@@ -603,7 +603,7 @@ footer span:hover {
 #page .white-container td,
 #page .white-container span,
 #page .white-container i #page .white-container h3 {
-    color: #d82c2e;
+    color: var(--color-main);
 }
 
 #page .info-container {
@@ -617,16 +617,16 @@ footer span:hover {
     bottom: 20px;
     right: 20px;
     cursor: pointer;
-    background: #d82c2e;
+    background: var(--color-main);
 }
 
 .page-link {
-    color: #d82c2e !important;
+    color: var(--color-main) !important;
     background-color: #eee !important;
 }
 
 .page-link:hover {
-    background-color: #d82c2e !important;
+    background-color: var(--color-main) !important;
     color: #eee !important;
 }
 
@@ -637,7 +637,7 @@ footer span:hover {
 }
 
 #erreur {
-    background: #d82c2e;
+    background: var(--color-main);
 }
 
 #erreur li {
