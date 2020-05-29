@@ -22,7 +22,16 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 			echo '<link rel="icon" type="image/x-icon" href="favicon.ico"></link>';
 	?>
 	<title><?php echo $_Serveur_['General']['name'] ?></title>
-	<style>.color-principal { color:#000000; }</style>
+	<style>
+		.color-principal {
+			color: #000000;
+		}
+
+		/* Main color */
+		:root {
+			--color-main: <?= (empty($_Theme_['Other']['main-color'])) ? "#d82c2e" : $_Theme_['Other']['main-color'] ?>;
+		}
+	</style>
 </head>
 
 <body>
