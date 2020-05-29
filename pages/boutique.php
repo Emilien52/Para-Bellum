@@ -162,7 +162,7 @@ color: #000;
 								<input type="number" class="form-control mb-1 mr-sm-1" id="quantite" name="quantite" value="1" />
 								<button type="submit" class="btn btn-success mb-2">Ajouter au panier</button>
 							</form><?php } else{ ?>
-							Connectez vous sur le serveur voulu... <?php } 
+							<p class="text-body">Connectez-vous sur le serveur voulu...</p> <?php } 
 					?>
 		  </div><button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
 		</div>
