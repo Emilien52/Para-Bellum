@@ -37,15 +37,20 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['theme']['actions']['editT
 
 
 	//Footer SECTION
-	$ecritureTheme['About']['icon1'] = htmlspecialchars($_POST['footer-icon1']);
-	$ecritureTheme['About']['icon2'] = htmlspecialchars($_POST['footer-icon2']);
-	$ecritureTheme['About']['icon3'] = htmlspecialchars($_POST['footer-icon3']);
+	$ecritureTheme['Footer']['icon1'] = htmlspecialchars($_POST['footer-icon1']);
+	$ecritureTheme['Footer']['icon2'] = htmlspecialchars($_POST['footer-icon2']);
+	$ecritureTheme['Footer']['icon3'] = htmlspecialchars($_POST['footer-icon3']);
 
-	$ecritureTheme['About']['link-icon1'] = htmlspecialchars($_POST['footer-link-icon1']);
-	$ecritureTheme['About']['link-icon2'] = htmlspecialchars($_POST['footer-link-icon2']);
-	$ecritureTheme['About']['link-icon3'] = htmlspecialchars($_POST['footer-link-icon3']);
+	$ecritureTheme['Footer']['link-icon1'] = htmlspecialchars($_POST['footer-link-icon1']);
+	$ecritureTheme['Footer']['link-icon2'] = htmlspecialchars($_POST['footer-link-icon2']);
+	$ecritureTheme['Footer']['link-icon3'] = htmlspecialchars($_POST['footer-link-icon3']);
+
+	//Other SECTION
+
+		//Colors
+
+		$ecritureTheme['Other']['main-color'] = (!isset($_POST['other-main-color'])) ? "#d82c2e" : htmlspecialchars($_POST['other-main-color']);
 
 
 	$ecriture = new Ecrire('theme/'.$_Serveur_['General']['theme'].'/config/config.yml', $ecritureTheme);
 }
-?>
