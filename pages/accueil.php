@@ -1,5 +1,3 @@
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-
 <!--Header-->
 <header class="heading" style="background-image: url('theme/upload/slider/<?= $_Accueil_['Slider']['image']; ?>');" id="header">
 	<div class="heading-mask">
@@ -14,15 +12,15 @@
 
 		</div>
 	</div>
-	<div class="card card-parabellum text-xs-center">
+	<div class="card card-parabellum text-xs-center text-white">
 		<div class="card-block text-center text-uppercase">
 			IP du serveur : <?= '<b>' . $_Serveur_['General']['ipTexte'] . '</b>'; ?>
 			<p class="h6 wow fadeInUp" data-wow-delay="0.9s"><?php if ($_Serveur_['General']['statut'] == 0) {
-																	echo '<span class="badge badge-danger">Hors-Ligne</span>';
+																	echo '<span class="badge badge-danger text-white">Hors-Ligne</span>';
 																} elseif ($_Serveur_['General']['statut'] == 1) {
-																	echo '<span class="badge badge-success">En Ligne</span> : ' . $playeronline . ' / ' . $maxPlayers;
+																	echo '<span class="badge badge-success text-white">En Ligne</span> : ' . $playeronline . ' / ' . $maxPlayers;
 																} else
-																	echo '<span class="badge badge-warning">En Maintenance</span>';
+																	echo '<span class="badge badge-warning text-white">En Maintenance</span>';
 																?></p>
 		</div>
 	</div>
@@ -254,11 +252,11 @@
 		<h2><?= $_Theme_['Staff']['desc-top']; ?></h2>
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12">
-				<button class="btn btn-staff btn-block" type="button" data-toggle="collapse" data-target="#Staff" aria-expanded="false" aria-controls="collapseExample">
+				<button class="btn btn-staff btn-block" type="button" data-toggle="collapse" data-target="#staffCol" aria-expanded="false" aria-controls="staffCol">
 					<h4>Cliquez pour afficher</h4>
 				</button>
 
-				<div class="collapse" id="Staff">
+				<div class="collapse" id="staffCol" aria-labelledby="staffCol">
 					<div class="card card-block">
 						<div class="row">
 							<?php

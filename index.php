@@ -1,22 +1,35 @@
 <?php
 require('theme/'. $_Serveur_['General']['theme'] . '/preload.php'); 
-require('include/version.php');
 require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8" />
 	<meta name="autor" content="CraftMyWebsite , TheTueurCiTy, <?php echo $_Serveur_['General']['name']; ?>" />
+	
+	<meta property="og:title" content="<?= $_Serveur_['General']['name'] ?>">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://<?= $_SERVER["SERVER_NAME"] ?>">
+    <meta property="og:image" content="https://<?= $_SERVER["SERVER_NAME"] ?>/favicon.ico">
+    <meta property="og:image:alt" content="<?= $_Serveur_['General']['description'] ?>">
+    <meta property="og:description" content="<?= $_Serveur_['General']['description'] ?>">
+    <meta property="og:site_name" content="<?= $_Serveur_['General']['name'] ?>" />
+
+    <meta name="twitter:title" content="<?= $_Serveur_['General']['name'] ?>">
+    <meta name="twitter:description" content="<?= $_Serveur_['General']['description'] ?>">
+    <meta name="twitter:image" content="https://<?= $_SERVER["SERVER_NAME"] ?>/favicon.ico">
+	
 	<link href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="https://use.fontawesome.com/releases/v5.0.2/css/all.css" rel="stylesheet">
 	<link href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/ionicons.min.css" rel="stylesheet" type="text/css">
-	<link href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/animate.css" rel="stylesheet" type="text/css">
-	<link href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/hover.min.css" rel="stylesheet" type="text/css">
+	<!--<link href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/animate.css" rel="stylesheet" type="text/css">
+	<link href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/hover.min.css" rel="stylesheet" type="text/css">!-->
 	<link href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/custom.css" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/toastr.css">
 	<link rel="stylesheet" href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/snarl.min.css">
 	<link rel="stylesheet" href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/forum.css">
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
 	<?php
 	if(file_exists('favicon.ico'))
 			echo '<link rel="icon" type="image/x-icon" href="favicon.ico"></link>';
@@ -32,20 +45,45 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 			--color-main: <?= (empty($_Theme_['Other']['main-color'])) ? "#d82c2e" : $_Theme_['Other']['main-color'] ?>;
 		}
 	</style>
+	
+	<script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/jquery.min.js"></script>
+	<script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/ckeditor.js"></script>
+	<?php if(isset($_GET['page']) && $_GET['page'] == "voter") {
+        echo '<script src="theme/default/assets/js/voteControleur.js"></script>';
+    } ?>	
 </head>
 
 <body>
-	<?php if(isset($_Joueur_)) { ?>
-		<?php setcookie('pseudo', $_Joueur_['pseudo'], time() + 86400, null, null, false, true); ?>	
-		<?php } else { ?>
-			<?php } ?>
-			<?php 
-			include('theme/' .$_Serveur_['General']['theme']. '/entete.php');
-			?>
-			<?php tempMess(); ?>
-		<?php
+	<script type="text/javascript">var _Jetons_ = "<?=$_Serveur_['General']['moneyName'];?>";</script>
+	
+	
+	<?php
+	//Verif Version
+    include("./include/version.php");
+    include("./include/version_distant.php");
+	if ($versioncms != $versioncmsrelease && Permission::getInstance()->verifPerm('PermsPanel', 'update', 'showPage')) : ?>
+
+        <div class=" mb-0 rounded-0 text-center alert alert-main bg-parabellum alert-dismissible text-shadow-none fade show sticky-top" role="alert">
+            <h5 class="m-0">
+                Une mise à jour est disponible <strong>(<a href="https://craftmywebsite.fr/telecharger" target="_blank" class="alert-link"><?= $versioncmsrelease ?></a>)</strong> !
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="color: var(--base-color);">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </h5>
+        </div>
+
+    <?php endif; ?>
+	
+	<?php if (Permission::getInstance()->verifPerm("connect")) /* --> */ setcookie('pseudo', $_Joueur_['pseudo'], time() + 86400, null, null, false, true);
+
+    include('theme/' . $_Serveur_['General']['theme'] . '/entete.php'); //Header included
+    tempMess(); ?>
+	
+	
+	<?php
 		$check_installation_dossier = "installation";
-		if (is_dir($check_installation_dossier)) { ?>
+		if (is_dir($check_installation_dossier)) {
+	?>
 		<header class="heading-pagination">
 			<div class="container-fluid">
 				<h1 class="text-uppercase wow fadeInRight" style="color:white;">Vérification d'installation</h1>
@@ -53,31 +91,38 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 		</header>
 		<section id="page" class="layout">
 			<div class="container">
-			</br>
-			<div class="alert alert-danger">
-				<center><strong>Erreur :</strong> Vous devez absolument effacer le dossier "installation" à la racine de votre site pour commencer à utiliser votre site.</br>
-					Rafraîchissez la page ou appuyez sur le bouton ci-dessous pour revérifier.
-				</center>
+				</br>
+				<div class="alert alert-danger">
+					<center><strong>Erreur :</strong> Vous devez absolument effacer le dossier "installation" à la racine de votre site pour commencer à utiliser votre site.</br>
+						Rafraîchissez la page ou appuyez sur le bouton ci-dessous pour revérifier.
+					</center>
+				</div>
+				<center><a href="index.php" class="btn btn-warning btn-lg btn-block">Refaire une vérification</a></center>
+				</br></br>
 			</div>
-			<center><a href="index.php" class="btn btn-warning btn-lg btn-block">Refaire une vérification</a></center>
-		</br>
-	</br>
-</div></section>
+		</section>
 <?php } else { include('controleur/page.php'); } 
+
 include('theme/' .$_Serveur_['General']['theme']. '/pied.php'); ?>
+
+
 <!-- Les formulaires pop-up -->
-<?php include('theme/' .$_Serveur_['General']['theme']. '/formulaires.php'); 
-?>
-<script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/jquery.min.js"></script>
+<?php include('theme/' .$_Serveur_['General']['theme']. '/formulaires.php'); ?>
+
+
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/popper.min.js"></script>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/wow.min.js"></script>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/custom.js"></script>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/toastr.min.js"></script>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/snarl.min.js"></script>
 <?php if($_Serveur_['Payement']['dedipass'] == true) { ?> <script src="//api.dedipass.com/v1/pay.js"></script><?php } ?>
-<script src="theme/<?=$_Serveur_['General']['theme'];?>/js/messagerie.js"></script>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/zxcvbn.js"></script><!-- :heart: à eux -->
+
+<?php include "theme/" . $_Serveur_['General']['theme'] . "/php/ckeditorManager.php"; ?>
+
 <script>
 function insertAtCaret (textarea, icon)
 { 
@@ -455,6 +500,13 @@ function ajout_text_complement(textarea, entertext, tapetext, balise, complement
 		}
 	}
 }
+
+function isset(elem){
+	if(elem != null){
+		return true;
+	}
+	return false;
+}
 </script>
 <?php 
 include('controleur/notifications.php');
@@ -500,12 +552,6 @@ function ajax_new_alerts(){
 }
 </script>
 <?php }
-if(isset($modal))
-{
-	?>
-	<script>  	$('#myModal').modal('toggle') 	</script>	
-	<?php
-}
 if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['moderation']['seeSignalement'])
 {
 	?>

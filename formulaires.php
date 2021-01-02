@@ -303,29 +303,90 @@ if (isset($_GET['page']) && $_GET['page'] == "messagerie") {
 <?php
 }
 ?>
-<div class="modal fade" id="NomForum" tabindex="-1" role="dialog" aria-labelledby="NomForumLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="NomForumLabel">Modifier le nom du forum</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<form action="?action=changeNomForum" method="post">
-				<div class="modal-body">
-					<input type="hidden" name="id" id="id" value="">
-					<input type="hidden" name="entite" id="entite" value="">
-					<input type="text" class="form-control" name="nom" id="nom" />
-					<br />
-					<label class="control-label col-sm-4" for="icone">Icone</label>
-					<input type="text" class="form-control col-sm-6" style="display: inline-block;" name="icone" value="" id="icone">
-					<p class="text-muted text-center"><a href="https://design.google.com/icons/" target="_blank">https://design.google.com/icons/</a></p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-					<button type="submit" class="btn btn-primary">Modifier</button>
-				</div>
-		</div>
-	</div>
+
+<?php if(isset($_GET['page']) && $_GET['page'] == "forum" && Permission::getInstance()->verifPerm('PermsForum', 'general', 'deleteCategorie') && !$_SESSION['mode']) : ?>
+<div class="modal fade" id="editForum" tabindex="-1" role="dialog" aria-labelledby="editForum" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="form-signin" role="form" method="post" action="?&action=editForum">
+                <div class="modal-header bg-parabellum">
+                    <h5 class="modal-title">Édition du forum "<span id="editForumTitle" ></span>"</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="color: var(--base-color);">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <input type="hidden" name="id" value="" id="editForumId"/>
+                    <div class="form-row my-2">
+                        <label for="nomForum">Nom du Forum <span class="star-required"></span></label>
+                        <input type="text" name="nom" id="editForumName" maxlength="40" class="form-control custom-text-input" required />
+                    </div>
+
+                    <div class="form-row my-2">
+                        <label for="img">Icône</label>
+                            <input type="text" name="img" id="editForumImg" maxlength="300" placeholder='<i class="far fa-comment-dots"></i>' class="form-control custom-text-input" />
+                            <small id="imgHelp" class="form-text text-muted">
+                                disponible sur : <a href="https://fontawesome.com/icons/" target="_blank">https://fontawesome.com/icons/</a>
+                            </small>
+                    </div>
+                    <div class="form-row my-2">
+                        <label for="forum">Catégorie <span class="star-required"></span></label>
+                        <select name="forum" class="form-control custom-text-input" required>
+                        <?php for ($z = 0, $zMax = count($fofo); $z < $zMax; $z++) : ?>
+                            <option id="editForumCat<?= $fofo[$z]['id']; ?>" value="<?= $fofo[$z]['id']; ?>">
+                                <?= $fofo[$z]['nom']; ?>
+                            </option>
+                        <?php endfor; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-parabellumW w-100">Valider les changements</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
 </div>
+<?php endif ?>
+<?php if(isset($_GET['page']) && $_GET['page'] == "forum_categorie") : ?>
+<div class="modal fade" id="editSForum" tabindex="-1" role="dialog" aria-labelledby="editSForum" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="form-signin" role="form" method="post" action="?&action=editSousForum">
+                <div class="modal-header bg-parabellum">
+                    <h5 class="modal-title">Édition du sous-forum "<span id="editForumTitle" ></span>"</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="color: var(--base-color);">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <input type="hidden" name="id" value="" id="editForumId"/>
+                     <input type="hidden" name="idSF" value="" id="editForumSFId"/>
+                     <input type="hidden" name="index" value="" id="editForumIndex"/>
+                    <div class="form-row my-2">
+                        <label for="nomForum">Nom du sous-Forum <span class="star-required"></span></label>
+                        <input type="text" name="nom" id="editForumName" maxlength="40" class="form-control custom-text-input" required />
+                    </div>
+
+                    <div class="form-row my-2">
+                        <label for="img">Icône</label>
+                            <input type="text" name="img" id="editForumImg" maxlength="300" placeholder='<i class="far fa-comment-dots"></i>' class="form-control custom-text-input" />
+                            <small id="imgHelp" class="form-text text-muted">
+                                disponible sur : <a href="https://fontawesome.com/icons/" target="_blank">https://fontawesome.com/icons/</a>
+                            </small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-parabellumW w-100">Valider les changements</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+<?php endif; ?>

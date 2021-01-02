@@ -8,7 +8,9 @@
 
 * {
     font-family: 'Lato', sans-serif;
-    ;
+}
+
+*:not([style*="color"]):not(ck-container):not(u):not(strong):not(p):not(.dropdown-item):not(> .form-signin) {
     color: #fff;
 }
 
@@ -179,8 +181,11 @@ a:hover {
 
 /* Navbar */
 
+.color-red{color: var(--color-main) !important; }
+
 .bg-parabellum {
     background-color: var(--color-main) !important;
+	color: #fff
 }
 
 .navbar-brand {
@@ -552,6 +557,10 @@ footer span:hover {
     background: var(--color-main);
 }
 
+#pageBg {
+	background: var(--color-main);
+}
+
 #white h1,
 #white span {
     font-weight: bold;
@@ -562,7 +571,8 @@ footer span:hover {
 #page h3,
 #page label,
 #page p,
-#page td {
+#page td,
+#page th {
     color: #fff;
 }
 
@@ -643,4 +653,125 @@ footer span:hover {
 #erreur li {
     color: #6c757d;
     list-style-type: none;
+}
+
+
+/* --- --- GRADES --- --- */
+
+.style16 {
+    background-image: url(../img/etoile-anime.gif);
+}
+
+.style5 {
+    background-image: url(../img/spark-gold.gif);
+}
+
+.prefix {
+    background-color: transparent;
+    padding: 0px 6px;
+    margin: -1px 0;
+    border: 1px solid transparent;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -khtml-border-radius: 0px; 
+    border-radius: 0px;
+    display: inline-block;
+}
+
+a.prefixLink:hover {
+    text-decoration: none;
+}
+
+a.prefixLink:hover .prefix {
+    color: rgb(70,70,70);
+    text-decoration: none;
+    background-color: rgb(245,245,245);
+    padding: 0 6px;
+    border: 1px solid rgb(222,222,222);
+}
+
+.prefix a { 
+  color: inherit;
+}
+
+.prefix.prefixPrimary {
+    color: rgb(70, 70, 70);
+    background-color: rgb(239, 239, 239);
+    border-color: rgb(239, 239, 239);
+}
+
+.prefix.prefixSecondary {
+    color: rgb(73, 73, 73);
+    background-color: rgb(203, 203, 203);
+    border-color: rgb(203, 203, 203);
+}
+
+.prefix.prefixRed {
+    color: white;
+    background-color: red;
+    border-color: #F88;
+}
+
+.prefix.prefixGreen {
+    color: white;
+    background-color: green;
+    border-color: green;
+}
+
+.prefix.prefixOlive {
+    color: black;
+    background-color: olive;
+    border-color: olive;
+}
+
+.prefix.prefixLightGreen {
+    color: black;
+    background-color: lightgreen;
+    border-color: lightgreen;
+}
+
+.prefix.prefixBlue {
+    color: white;
+    background-color: blue;
+    border-color: #88F;
+}
+
+.prefix.prefixRoyalBlue {
+    color: white;
+    background-color: royalblue;
+    border-color: #81A9E1;
+}
+
+.prefix.prefixSkyBlue {
+    color: black;
+    background-color: skyblue;
+    border-color: skyblue;
+}
+
+.prefix.prefixGray {
+    color: black;
+    background-color: gray;
+    border-color: #AAA;
+}
+
+.prefix.prefixSilver {
+    color: black;
+    background-color: silver;
+    border-color: silver;
+}
+
+.prefix.prefixYellow {
+    color: black;
+    background-color: yellow;
+    border-color: #E0E000;
+}
+
+.prefix.prefixOrange {
+    color: black;
+    background-color: orange;
+    border-color: #FFC520;
+}
+
+.prefix.prefixCreateur {
+    color: red;
 }
