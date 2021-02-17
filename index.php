@@ -133,7 +133,8 @@ include('theme/' .$_Serveur_['General']['theme']. '/pied.php'); ?>
 <?php if($_Serveur_['Payement']['dedipass'] == true) { ?> <script src="//api.dedipass.com/v1/pay.js"></script><?php } ?>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/assets/js/zxcvbn.js"></script><!-- :heart: à eux -->
 
-<?php include "theme/" . $_Serveur_['General']['theme'] . "/php/ckeditorManager.php"; ?>
+<?php include "theme/" . $_Serveur_['General']['theme'] . "/assets/php/ckeditorManager.php"; ?>
+<?php include "theme/" . $_Serveur_['General']['theme'] . "/assets/php/custom.php"; ?>
 
 <script>
     function insertAtCaret (textarea, icon)

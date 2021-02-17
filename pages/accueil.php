@@ -1,5 +1,5 @@
 <!--Header-->
-<header class="heading" style="background-image: url('theme/upload/slider/<?= $_Accueil_['Slider']['image']; ?>');" id="header">
+<header class="heading" style="background-image: url('theme/upload/bg.png'); no-repeat scroll center center; background-size: cover;" id="header">
 	<div class="heading-mask">
 		<div class="container" style="text-align:center;">
 
@@ -265,9 +265,9 @@
 								<div class="col-md-3 col-sm-4 col-6">
 									<div class="card staff-card">
 										<img class="card-img-top" src="https://cravatar.eu/helmhead/<?= $_Theme_['Staff']['name' . $staff . ''] ?>/600.png" alt="staff-img">
-										<div class="card-body">';
+										<div class="card-body">
 											<h3 class="card-title"><?= $_Theme_['Staff']['name' . $staff . ''] ?></h3>
-											<p class="card-text">'<?= $_Theme_['Staff']['grade' . $staff . ''] ?></p>
+											<p class="card-text"><?= $_Theme_['Staff']['grade' . $staff . ''] ?></p>
 										</div>
 									</div>
 								</div>

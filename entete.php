@@ -114,7 +114,7 @@
 										echo '<a href="?page=signalement" class="dropdown-item"><i class="fa fa-bell" style="color: #000"></i> Signalement <span class="badge badge-pill badge-warning" id="signalement">' . $signalement . '</span></a>';
 									}
 								?>
-								<a class="dropdown-item" href="?page=profil&profil=<?php echo $_Joueur_['pseudo']; ?>"><i class="fa fa-envelope" style="color: #000"></i> Profil</a>
+								<a class="dropdown-item" href="?page=profil&profil=<?php echo $_Joueur_['pseudo']; ?>"><i class="fas fa-user" style="color: #000"></i> Profil</a>
                                 <a class="dropdown-item" href="?page=alert"><i class="fa fa-envelope" style="color: #000"></i> Alertes  <span class="badge badge-pill badge-primary" id="alerts"><?php echo $alerte; ?></span></a>
                                 <a class="dropdown-item" href="?page=token"><i class="ion-cash" style="color: #000"></i> Mon solde <?php if(isset($_Joueur_['tokens'])) echo $_Joueur_['tokens'] . ' '; ?></a>
                                 <a class="dropdown-item text-danger" href="?action=deco" style="color: #d82c2e"><i class="fas fa-sign-out-alt" style="color: #d82c2e"></i> Se déconnecter</a>
