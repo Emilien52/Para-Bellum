@@ -10,7 +10,7 @@
     font-family: 'Lato', sans-serif;
 }
 
-*:not([style*="color"]):not(ck-container):not(u):not(strong):not(p):not(.dropdown-item):not(> .form-signin) {
+*:not([style*="color"]):not(ck-container):not(u):not(strong):not(p):not(.dropdown-item):not( .form-signin) {
     color: #fff;
 }
 
@@ -155,7 +155,6 @@ a:hover {
 .modal-body b,
 .modal-body p {
     color: #616161;
-    font-weight: none;
 }
 
 .modal-body span {
@@ -658,12 +657,59 @@ footer span:hover {
 
 /* --- --- GRADES --- --- */
 
-.style16 {
-    background-image: url(../img/etoile-anime.gif);
+.style1 {
+    background-image: url('../img/etoile-anime.gif');
+}
+
+.style2 {
+    background-image: url('../img/spark-gold.gif');
+}
+
+.style3 {
+    background-image: url('../img/lightning-blue.gif');
+}
+
+.style4 {
+    background-image: url('../img/bubble.gif');
+    background-position: center;
 }
 
 .style5 {
-    background-image: url(../img/spark-gold.gif);
+    background-image: url('../img/explosion.gif');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.style6 {
+    background-image: url('../img/fire.gif');
+    background-position: center;
+}
+
+.style7 {
+    background-image: url('../img/hearts.gif');
+    background-position: center;
+}
+
+.style8 {
+    background-image: url("../img/golden-apple.gif");
+    background-position: left;
+    background-repeat: no-repeat;
+}
+
+.style9 {
+    background-image: url("../img/diamond-sword.gif");
+    background-position: left;
+    background-repeat: no-repeat;
+}
+
+.style10 {
+    background-image: url("../img/diamond.gif");
+    background-position: left;
+    background-repeat: no-repeat;
+}
+
+.style11 {
+    background-image: url("../img/coins.gif");
 }
 
 .prefix {
