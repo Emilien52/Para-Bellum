@@ -546,6 +546,34 @@ footer span:hover {
     color: var(--color-main);
 }
 
+/* --- --- PROFILE --- --- */
+
+.profile-image{
+    margin-left: 45%;
+
+}
+
+@media (max-width: 1300px){
+    .profile-image {
+        margin-left: 42%;
+    }
+}
+
+@media (max-width: 1050px){
+    .profile-image {
+        margin-left: 40%;
+    }
+}
+
+@media (max-width: 450px){
+    .profile-image {
+        margin-left: 35%;
+    }
+    .profil-compte{
+        margin-top: 12px;
+    }
+}
+
 /* --- --- PAGE --- --- */
 
 #page {

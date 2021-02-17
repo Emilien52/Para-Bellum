@@ -472,37 +472,50 @@ if (isset($_GET['erreur'])) {
 
             <!-- Image et edition de la photo de profil -->
             <?php if ($isMyAccount) : ?>
-			
+
+
+
 			<div class="col-sm-12 mb-3">
 				<div class="row">
-					<div class="col-md-6">
-						<h3 class="header-bloc header-form text-center">Modifier sa photo de profil</h3>
+					<div class="mx-auto">
+						<h3 class="header-bloc header-form">Modifier sa photo de profil</h3>
+
 						<form class="form-horizontal" method="post" action="?action=modifImgProfil" role="form" enctype="multipart/form-data">
-							<div class="form-group">
-								<label for="img-profil" class="control-label">Importer votre image (&lt; 1Mo, jpeg, jpg, png, bmp, ico, gif)</label>
-								<input type="file" name="img_profil" required class="form-control-file text-white" id="img-profil">
-							</div>
-							<div class="form-group">
-								<button type="submit" class="btn btn-success">Envoyer</button>
-							</div>
+
+                            <div class="mx-auto">
+                                <h3 class="header-bloc text-center">Photo de profil actuelle</h3>
+
+                               <img src="<?=$_ImgProfil_->getUrlHeadByPseudo($_Joueur_['pseudo'], 128)?>" style="width: 128px; height: 128px;" alt="Image de profil de <?=htmlspecialchars($joueurDonnees['pseudo'])?>"/>
+
+
+
+                            <label for="img_profil" class="text-center">
+                                <input type="file" class="form-control-file d-none" name="img_profil" id="img_profil"
+                                       onchange='getUploadFileName(this)' required />
+                                <span class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Choisir une image </span>
+                                <button type="submit" class="btn btn-success">Envoyer</button>
+                                <button class="btn btn-danger" href="?action=removeImgProfil">Supprimer</button>
+                            </label>
+                            </div>
+
 						</form>
+
+
 					</div>
-					<div class="col-md-6">
-						<h3 class="header-bloc text-center">Photo de profil actuelle</h3>
-						<?php
-						echo "<center><img src='".$_ImgProfil_->getUrlHeadByPseudo($_Joueur_['pseudo'], 128)."' style='width: 128px; height: 128px;' alt='Image de profil de ".htmlspecialchars($joueurDonnees['pseudo'])."'/></center>";
-						?>
-						<center><a class="btn btn-danger" style="margin-top: 10px;" href="?action=removeImgProfil">Supprimer</a></center>
-					</div>
+
 				</div>
 			</div>
+
+
+
 
             <?php else : ?>
             <div class="col-sm-12 mb-3">
 				<h3 class="header-bloc text-center">Photo de profil actuelle</h3>
-				<?php
-				echo "<center><img src='".$_ImgProfil_->getUrlHeadByPseudo($_Joueur_['pseudo'], 128)."' style='width: 128px; height: 128px;' alt='Image de profil de ".htmlspecialchars($joueurDonnees['pseudo'])."'/></center>";
-				?>
+
+                <img class="profile-image" src="<?= $_ImgProfil_->getUrlHeadByPseudo($joueurDonnees['pseudo'], 128); ?>"
+                     style="height:128px; width:128px;"
+                     alt="Image de profil de <?= htmlspecialchars($joueurDonnees['pseudo']) ?>" />
 			</div>
             <?php endif; ?>
 
@@ -531,9 +544,9 @@ if (isset($_GET['erreur'])) {
 
             <div class="col-sm-6">
 
-                <div class="card text-white">
+                <div class="card text-white profil-compte">
 
-                    <div class="card-header bg-parabellum">
+                    <div class="card-header bg-parabellum ">
                         Comptes de <?= $joueurDonnees['pseudo'] ?>
                     </div>
 
