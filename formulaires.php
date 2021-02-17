@@ -5,7 +5,7 @@
 				<h4 class="modal-title" id="myModalLabel"><b>Connexion</b></h4>
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			</div>
-			<<form class="form-signin" role="form" method="post" action="?&action=connection">
+			<form class="form-signin" role="form" method="post" action="?&action=connection">
 				<div class="modal-body">
 					<div class="row">
 						<?php if (isset($_COOKIE['pseudo']))
