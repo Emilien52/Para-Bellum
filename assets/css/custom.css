@@ -13,6 +13,27 @@
 *:not([style*="color"]):not(ck-container):not(u):not(strong):not(p):not(.dropdown-item):not( .form-signin) {
     color: #fff;
 }
+html {
+    scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #373737;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-main);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: whitesmoke;
+}
 
 body {
     overflow-x: hidden;
@@ -246,6 +267,12 @@ header h2 {
     margin-left: auto;
     margin-right: auto;
 }
+
+.btn-circle:hover{
+    width: 55px;
+    font-size: 24px;
+}
+
 
 /* About */
 

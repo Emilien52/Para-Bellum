@@ -6,7 +6,8 @@
 			<h1 class="text-uppercase wow zoomInDown" data-wow-delay="0.6s"><?= $_Serveur_['General']['name']; ?></h1>
 			<h2 class="text-uppercase wow zoomInDown" data-wow-delay="0.6s"><?= $_Serveur_['General']['description']; ?></h2>
 			<br>
-			<a href="javascript:;" class="btn btn-circle js-scroll-trigger">
+
+			<a href="#about" class="btn btn-circle">
 				<i class="fa fa-angle-double-down animated"></i>
 			</a>
 
