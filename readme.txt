@@ -11,7 +11,7 @@ Quelques petites infos :
 
 ----------------------------------------------------------------------------------------------------------------------
 
-Remerciements: BadiiiX | Guedesite | Florentlife | deadfire24
+Remerciements: BadiiiX | Guedesite | Florentlife | deadfire24 | Teyir
 
 Et Oxykis qui nous a permis de reprendre son thème !
 
