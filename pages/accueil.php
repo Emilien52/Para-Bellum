@@ -1,5 +1,5 @@
 <!--Header-->
-<header class="heading" style="background-image: url('theme/upload/bg.png'); no-repeat scroll center center; background-size: cover;" id="header">
+<div class="heading" style="background-image: url('theme/upload/bg.png'); no-repeat scroll center center; background-size: cover;" id="header">
 	<div class="heading-mask">
 		<div class="container" style="text-align:center;">
 
@@ -15,7 +15,7 @@
 	</div>
 	<div class="card card-parabellum text-xs-center text-white">
 		<div class="card-block text-center text-uppercase">
-			IP du serveur : <?= '<b>' . $_Serveur_['General']['ipTexte'] . '</b>'; ?>
+			<IP></IP> du serveur : <?= '<b>' . $_Serveur_['General']['ipTexte'] . '</b>'; ?>
 			<p class="h6 wow fadeInUp" data-wow-delay="0.9s"><?php if ($_Serveur_['General']['statut'] == 0) {
 																	echo '<span class="badge badge-danger text-white">Hors-Ligne</span>';
 																} elseif ($_Serveur_['General']['statut'] == 1) {
@@ -25,12 +25,12 @@
 																?></p>
 		</div>
 	</div>
-</header>
+</div>
 
 
 <!--Page-->
 <section id="about">
-	<div class="container">
+	<div class="container ">
 		<h1 class="text-uppercase"><?= $_Theme_['About']['main-title']; ?></h1>
 		<h2><?= $_Theme_['About']['desc-top']; ?></h2>
 		<div class="row">
@@ -155,88 +155,7 @@
 						<?php }
 							}
 						} ?>
-						<div class="modal fade" id="<?= "news" . $news[$i]['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-							<div class="modal-dialog modal-support">
-								<div class="modal-content modal-lg">
-									<div class="modal-header">
-										<h4 class="modal-title" id="myModalLabel"><b><?= $news[$i]['titre']; ?></b></h4>
-										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									</div> <!-- Modal-Header -->
-									<div class="modal-body">
-										</br>
-										<?php
-										$getNewsCommentaires = $accueilNews->newsCommentaires($news[$i]['id']);
-										while ($newsComments = $getNewsCommentaires->fetch()) {
-											if (isset($_Joueur_)) {
 
-												$getCheckReport = $accueilNews->checkReport($_Joueur_['pseudo'], $newsComments['pseudo'], $news[$i]['id'], $newsComments['id']);
-												$checkReport = $getCheckReport->rowCount();
-
-												$getCountReportsVictimes = $accueilNews->countReportsVictimes($newsComments['pseudo'], $news[$i]['id'], $newsComments['id']);
-												$countReportsVictimes = $getCountReportsVictimes->rowCount();
-											}
-										?>
-
-											<div class="container">
-												<div class="row">
-													<div class="col-md-4 col-lg-4 col-sm-12">
-														<p class="username"><img src="https://cravatar.eu/helmhead/<?= $_Joueur_['pseudo']; ?>/20" style="margin-left: -10px"></img><?= '<B> ' . $newsComments['pseudo'] . '</B>'; ?><br />
-															<?= 'Le ' . date('d/m', $newsComments['date_post']) . ' à ' . date('H:i:s', $newsComments['date_post']) . ''; ?></p>
-														<?php if (isset($_Joueur_)) { ?>
-															<span style="color: red;"><?php if ($newsComments['nbrEdit'] != "0") {
-																							echo 'Nombre d\'édition: ' . $newsComments['nbrEdit'] . '';
-																						}
-																						if ($countReportsVictimes != "0") {
-																							echo '<B>' . $countReportsVictimes . ' Signalement</B> |';
-																						} ?></span>
-															<div class="dropdown">
-																<button class="btn btn-info" data-toggle="dropdown" style="font-size: 10px;">Action <b class="caret"></b></button>
-																<ul class="dropdown-menu">
-																	<?php if ($newsComments['pseudo'] == $_Joueur_['pseudo'] or $_Joueur_['rang'] == 1) {
-																		echo '<li><a href="#" data-toggle="modal" data-target="#news' . $news[$i]['id'] . '-' . $newsComments['id'] . '-edit">Editer</a></li>';
-																		echo '<li><a href="?&action=delete_news_commentaire&id_comm=' . $newsComments['id'] . '&id_news=' . $news[$i]['id'] . '&auteur=' . $newsComments['pseudo'] . '">Supprimer</a></li>';
-																	}
-																	if ($newsComments['pseudo'] != $_Joueur_['pseudo']) {
-																		if ($checkReport == "0") {
-																			echo '<li><a href="?&action=report_news_commentaire&id_news=' . $news[$i]['id'] . '&id_comm=' . $newsComments['id'] . '&victime=' . $newsComments['pseudo'] . '">Signaler</a></li>';
-																		} else {
-																			echo '<li><a href="#">Déjà report</a></li>';
-																		}
-																	} ?><br>
-																</ul>
-															</div> <!-- dropdown -->
-														<?php } ?>
-													</div>
-													<div class="col-md-6 col-lg-6 col-sm-12">
-														<?php $com = espacement($newsComments['commentaire']);
-														echo BBCode($com, $bddConnection); ?>
-													</div>
-												</div> <!-- Ticket-Commentaire-->
-											</div> <!-- Panel Panel-Default -->
-										<?php } ?>
-									</div> <!-- Modal-Body -->
-									<?php
-									if (isset($_Joueur_)) { ?>
-										<div class="modal-footer w-100">
-											<form action="?&action=post_news_commentaire&id_news=<?= $news[$i]['id']; ?>" method="post" class="w-100">
-												<textarea name="commentaire" class="form-control w-100" required></textarea>
-												<br>
-												<h4>Minimum de 6 caractères<br>Maximum de 255 caractères</h4>
-												</br>
-												<div class="text-center"><button type="submit" class="btn btn-parabellumW btn-block">Commenter</button></div>
-											</form>
-										</div>
-								</div> <!-- Modal-Footer -->
-							<?php } else { ?>
-								<div class="modal-footer">
-									<div class="text-center">
-										<div class="alert alert-danger">Veuillez-vous connecter pour mettre un commentaire.</div>
-									</div class="text-center">
-									<div class="text-center"><a data-toggle="modal" data-target="#ConnectionSlide" class="btn btn-danger">Connexion</a></div>
-								</div> <!-- Modal-Footer -->
-							<?php } ?>
-							</div> <!-- Modal-Content -->
-						</div>
 
 			<?php }
 				}
